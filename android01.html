@@ -1,0 +1,21 @@
+<html>
+<head>
+<script>
+    var isWeixin = function () { //判断是否是微信
+        var ua = navigator.userAgent.toLowerCase();
+        return ua.match(/MicroMessenger/i) == "micromessenger";
+    };
+    if(isWeixin()){
+        let imgEle = document.createElement("img");
+        imgEle.src = "./bg.png";
+        imgEle.style.width="300px"
+        imgEle.style.float="right"
+        document.body.appendChild(imgEle)
+        document.body.style.background="#333"
+    }else{
+        document.location.href="https://static-pc.0631110.com/xy00001/caipiaoAPP/xy00001.apk"
+    }
+</script>
+</head>
+
+</html>
