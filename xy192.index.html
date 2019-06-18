@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <script>
+    var u = navigator.userAgent,
+      isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1,
+      isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+      urls = {
+        android: "https://static-pc.0631110.com/xy00192/caipiaoAPP/xy00192.apk",
+        ios: "itms-services://?action=download-manifest&url=https://static-pc.0631110.com/xy00192/caipiaoAPP/manifest.plist"
+      };
+    var isWeixin = function() {
+      //判断是否是微信
+      var ua = navigator.userAgent.toLowerCase();
+      return ua.match(/MicroMessenger/i) == "micromessenger";
+    };
+
+    if (isiOS) {
+      window.location.href = urls.ios;
+    } else if (isWeixin()) {
+      let imgEle = document.createElement("img");
+      imgEle.src = "./bg.png";
+      imgEle.style.width = "300px";
+      imgEle.style.float = "right";
+      document.body.appendChild(imgEle);
+      document.body.style.background = "#333";
+    } else {
+      document.location.href = urls.android;
+    }
+  </script>
+  <body></body>
+</html>
