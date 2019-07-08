@@ -1,29 +1,29 @@
-<！doctype html>
-< html  lang = “ en ” >
-< 头 >
-    < meta  charset = “ UTF-8 ” >
-    < meta  name = “ viewport ”
-          content = “ width = device-width，user-scalable = no，initial-scale = 1.0，maximum-scale = 1.0，minimum-scale = 1.0 ” >
-    < meta  http-equiv = “ X-UA-Compatible ”  content = “ ie = edge ” >
-    < title >请在浏览器打开下载</ title >
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>请在浏览器打开下载</title>
 
-</ head >
-< body >
-</ body >
-< script >
-    var  isWeixin  =  function（）{ //判断是否是微信
-        var ua =  navigator。userAgent。toLowerCase（）;
-        回归 ua。匹配（/ MicroMessenger /我）==  “ micromessenger ” ;
+</head>
+<body>
+</body>
+<script>
+    var isWeixin = function () { //判断是否是微信
+        var ua = navigator.userAgent.toLowerCase();
+        return ua.match(/MicroMessenger/i) == "micromessenger";
     };
-    if（isWeixin（））{
-        让 imgEle =  文件。createElement（“ img ”）;
-        imgEle。src  =  “ ./ bg.png ” ;
-        imgEle。风格。width = “ 300px ”
-        imgEle。风格。float = “ right ”
-        文件。身体。appendChild（imgEle）
-        文件。身体。风格。background = “＃333 ”
-    } else {
-        文件。位置。href = “ https://static-pc.0631110.com/xy00015/caipiaoAPP/xy00015.apk ”
+    if(isWeixin()){
+        let imgEle = document.createElement("img");
+        imgEle.src = "./bg.png";
+        imgEle.style.width="300px"
+        imgEle.style.float="right"
+        document.body.appendChild(imgEle)
+        document.body.style.background="#333"
+    }else{
+        document.location.href="https://static-pc.0631110.com/xy00015/caipiaoAPP/xy00015.apk"
     }
-</ script >
-</ html >
+</script>
+</html>
