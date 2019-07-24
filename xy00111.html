@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>正在下载...</title>
+    <script type="text/javascript" charset="UTF-8" src="//res.cdn.openinstall.io/openinstall.js"></script>
+</head>
+<body></body>
+<script>
+    (function () {
+        var u = navigator.userAgent,
+            isAndroid = u.indexOf("Android") > -1 || u.indexOf("Adr") > -1,
+            isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            urls = {
+                android: "https://static-pc.fse120.com/xy00111/caipiaoAPP/xy00111.apk",
+                ios: "itms-services://?action=download-manifest&url=https://static-pc.fse120.com/xy00111/caipiaoAPP/manifest.plist"
+            };
+        var appKey = "kz449s";
+        var isWeixin = function() {
+            //判断是否是微信
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.match(/MicroMessenger/i) == "micromessenger";
+        };
+
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+
+        var varCode = getQueryString("var"); //邀请码
+        alert(varCode)
+        if (varCode&&appKey) { //appKey 和参数都有 通过 openInStall
+            if (isWeixin()) { //如果在微信
+                let imgEle = document.createElement("img");
+                imgEle.src = "./bg.png";
+                imgEle.style.width = "300px";
+                imgEle.style.float = "right";
+                document.body.appendChild(imgEle);
+                document.body.style.background = "#333";
+            }else{
+                data={
+                    code:varCode,
+                };
+                new OpenInstall({
+                    // /*appKey必选参数，openinstall平台为每个应用分配的ID*
+                    appKey : appKey,
+                    onready : function() {
+                        var m = this;
+                        m.wakeupOrInstall();
+                        return false;
+                    }
+                }, data);
+            }
+
+        }else{//直接下载
+            if (isiOS) {
+                window.location.href = urls.ios;
+            } else if (isWeixin()) {
+                let imgEle = document.createElement("img");
+                imgEle.src = "./bg.png";
+                imgEle.style.width = "300px";
+                imgEle.style.float = "right";
+                document.body.appendChild(imgEle);
+                document.body.style.background = "#333";
+            } else {
+                document.location.href = urls.android;
+            }
+        }
+    })();
+
+
+
+
+</script>
+
+</html>
